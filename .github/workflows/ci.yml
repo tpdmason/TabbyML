@@ -30,12 +30,12 @@ jobs:
 
   tests:
     runs-on: ubuntu-latest
-    if: jobs.changes.outputs.changes == 'true'
+    needs: changes
+    if: needs.changes.outputs.changes == 'true'
     steps:
       - uses: actions/checkout@v3
         with:
           submodules: recursive
-
       - name: Install Rust
         uses: actions-rs/toolchain@v1
         with:
